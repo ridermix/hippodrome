@@ -23,4 +23,13 @@ class HorseTest {
 
         assertEquals("Name cannot be blank.", exception.getMessage());
     }
+
+    @Test
+    void whenHorseSpeedIsNegative(){
+        Throwable exception = assertThrows(
+                IllegalArgumentException.class,
+                () -> new Horse("Bucefal", -10, 50));
+
+        assertEquals("Speed cannot be negative.", exception.getMessage());
+    }
 }
