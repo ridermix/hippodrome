@@ -48,4 +48,11 @@ class HorseTest {
         String actualName = new Horse("Pegasus", 100, 100).getName();
         assertEquals(expectedName, actualName);
     }
+
+    @Test
+    void getSpeed(){
+        double expectedSpeed = 50;
+        double actualSpeed = new Horse("Pegasus", 50, 100).getSpeed();
+        assertEquals(expectedSpeed, actualSpeed);
+    }
 }
