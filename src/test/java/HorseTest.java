@@ -55,4 +55,11 @@ class HorseTest {
         double actualSpeed = new Horse("Pegasus", 50, 100).getSpeed();
         assertEquals(expectedSpeed, actualSpeed);
     }
+
+    @Test
+    void getDistance(){
+        double expectedDistance = 250;
+        double actualDistance = new Horse("Pegasus", 50, 250).getDistance();
+        assertEquals(expectedDistance, actualDistance);
+    }
 }
