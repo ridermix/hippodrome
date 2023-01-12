@@ -25,20 +25,27 @@ class HorseTest {
     }
 
     @Test
-    void whenHorseSpeedIsNegative(){
+    void whenHorseSpeedIsNegative() {
         Throwable exception = assertThrows(
                 IllegalArgumentException.class,
-                () -> new Horse("Bucefal", -10, 50));
+                () -> new Horse("Pegasus", -10, 50));
 
         assertEquals("Speed cannot be negative.", exception.getMessage());
     }
 
     @Test
-    void whenHorseDistanceIsNegative(){
+    void whenHorseDistanceIsNegative() {
         Throwable exception = assertThrows(
                 IllegalArgumentException.class,
-                () -> new Horse("Bucefal", 100, -50));
+                () -> new Horse("Pegasus", 100, -50));
 
         assertEquals("Distance cannot be negative.", exception.getMessage());
+    }
+
+    @Test
+    void getName() {
+        String expectedName = "Pegasus";
+        String actualName = new Horse("Pegasus", 100, 100).getName();
+        assertEquals(expectedName, actualName);
     }
 }
