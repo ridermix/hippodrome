@@ -2,7 +2,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class HorseTest {
     @Test
@@ -50,16 +51,24 @@ class HorseTest {
     }
 
     @Test
-    void getSpeed(){
+    void getSpeed() {
         double expectedSpeed = 50;
         double actualSpeed = new Horse("Pegasus", 50, 100).getSpeed();
         assertEquals(expectedSpeed, actualSpeed);
     }
 
     @Test
-    void getDistance(){
+    void getDistanceWhichWasThirdInParameters() {
         double expectedDistance = 250;
         double actualDistance = new Horse("Pegasus", 50, 250).getDistance();
         assertEquals(expectedDistance, actualDistance);
     }
+    @Test
+    void getNullDistanceWhenUsedConstructorWithoutDistance(){
+        double expectedDistance = 0;
+        double actualDistance = (new Horse("Pegasus",50)).getDistance();
+        assertEquals(expectedDistance, actualDistance);
+    }
+
+
 }
