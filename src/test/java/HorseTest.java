@@ -1,9 +1,11 @@
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import org.mockito.MockedStatic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.mockStatic;
 
 class HorseTest {
     @Test
@@ -63,11 +65,34 @@ class HorseTest {
         double actualDistance = new Horse("Pegasus", 50, 250).getDistance();
         assertEquals(expectedDistance, actualDistance);
     }
+
     @Test
-    void getNullDistanceWhenUsedConstructorWithoutDistance(){
+    void getNullDistanceWhenUsedConstructorWithoutDistance() {
         double expectedDistance = 0;
-        double actualDistance = (new Horse("Pegasus",50)).getDistance();
+        double actualDistance = (new Horse("Pegasus", 50)).getDistance();
         assertEquals(expectedDistance, actualDistance);
+    }
+
+    @Test
+    void checkMoveCallsGetRandomDouble() {
+        try (MockedStatic<Horse> mockedStatic = mockStatic(Horse.class)) {
+            Horse horse = new Horse("Pegasus", 50, 100);
+            horse.move();
+            mockedStatic.verify(() -> Horse.getRandomDouble(0.2, 0.9));
+        }
+    }
+
+    @ParameterizedTest
+    @ValueSource(doubles = {0.0, 0.2, 0.5, 0.9, 1.0})
+    void checkMoveCalculateDistanceAccordingFormula(double value) {
+        Horse horse = new Horse("Pegasus", 50, 100);
+        try (MockedStatic<Horse> mockedStatic = mockStatic(Horse.class)) {
+            mockedStatic.when(() -> Horse.getRandomDouble(0.2, 0.9)).thenReturn(value);
+            horse.move();
+            double expected = 100 + 50 * value; // using formula distance + speed * getRandomDouble(0.2, 0.9)
+            double actual = horse.getDistance();
+            assertEquals(expected, actual);
+        }
     }
 
 
