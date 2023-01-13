@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 class HippodromeTest {
 
@@ -37,5 +39,18 @@ class HippodromeTest {
         List<Horse> actual = hippodrome.getHorses();
         assertEquals(expected,actual);
 
+    }
+
+    @Test
+    void checkMoveCallsForAllHorses(){
+        List<Horse> horses = new ArrayList<>();
+        for (int i = 0; i < 50; i++) {
+            horses.add(mock(Horse.class));
+        }
+        Hippodrome hippodrome = new Hippodrome(horses);
+        hippodrome.move();
+        for (Horse horse : horses) {
+            verify(horse).move();
+        }
     }
 }
