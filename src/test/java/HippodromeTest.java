@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
-class HippodromeTest {
 
+class HippodromeTest {
     @Test
     void whenHorseListIsNull() {
         Throwable exception = assertThrows(
@@ -14,6 +14,7 @@ class HippodromeTest {
                 () -> new Hippodrome(null));
 
         assertEquals("Horses cannot be null.", exception.getMessage());
+
     }
 
     @Test
