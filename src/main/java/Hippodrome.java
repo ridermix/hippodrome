@@ -22,7 +22,7 @@ public class Hippodrome {
         }
 
         this.horses = horses;
-        logger.debug("Создание Hippodrome, лошадей ["+ horses.size() +"]");
+        logger.debug("Создание Hippodrome, лошадей [" + horses.size() + "]");
     }
 
     public List<Horse> getHorses() {

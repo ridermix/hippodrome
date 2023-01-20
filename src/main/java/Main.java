@@ -1,7 +1,6 @@
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -20,6 +19,7 @@ public class Main {
                 new Horse("Пегас", 2.9),
                 new Horse("Вишня", 3)
         );
+
         Hippodrome hippodrome = new Hippodrome(horses);
         logger.info("Начало скачек. Количество участников: " + horses.size());
 

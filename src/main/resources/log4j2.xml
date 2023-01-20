@@ -2,9 +2,6 @@
 <Configuration status="ERROR">
 
     <Appenders>
-        <Console name="Console" target="SYSTEM_OUT" follow="true">
-            <PatternLayout pattern="%d %-5p %c: %m%n"/>
-        </Console>
         <RollingFile name="LogToFile" filename="logs/hippodrome.log"
                      filePattern="logs/hippodrome.%d{yyyy-MM-dd-mm}.log"
                      ignoreExceptions="false">
@@ -24,8 +21,7 @@
         <!--        <Logger name="com.mkyong" level="debug" additivity="false">-->
         <!--            <AppenderRef ref="LogToRollingFile"/>-->
         <!--        </Logger>-->
-        <Root level="info">
-            <AppenderRef ref="Console"/>
+        <Root level="INFO">
             <AppenderRef ref="LogToFile"/>
         </Root>
     </Loggers>
